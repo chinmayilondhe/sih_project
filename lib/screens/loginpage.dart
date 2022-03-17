@@ -13,11 +13,14 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        decoration: BoxDecoration(
+            color: Colors.lightBlue.shade100
+        ),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("LOGIN",style: TextStyle(fontSize: 30),),
+              Text("LOGIN",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
               SizedBox(height: 20,),
               ElevatedButton(onPressed: (){
 
