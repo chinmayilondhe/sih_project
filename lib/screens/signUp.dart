@@ -1,18 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sih_project/screens/alert.dart';
-import 'package:sih_project/screens/signUp.dart';
-import 'package:sih_project/screens/homepage.dart';
+import 'package:sih_project/screens/userlogin.dart';
 
-class UserLogin extends StatefulWidget {
-  const UserLogin({Key? key}) : super(key: key);
+import 'homepage.dart';
+
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
-  _UserLoginState createState() => _UserLoginState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _UserLoginState extends State<UserLogin> {
+class _SignUpState extends State<SignUp> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   @override
@@ -32,7 +31,7 @@ class _UserLoginState extends State<UserLogin> {
                   enabledBorder: OutlineInputBorder(
                       borderSide: const BorderSide(width: 2),
                       borderRadius: BorderRadius.circular(30)),
-                  hintText: 'User ID',
+                  hintText: 'Enter Email',
                 ),
               ),
             ),
@@ -56,22 +55,15 @@ class _UserLoginState extends State<UserLogin> {
             ElevatedButton(
                 onPressed: () {
                   FirebaseAuth.instance
-                      .signInWithEmailAndPassword(
-                          email: _email.text.trim(),
-                          password: _password.text.trim())
+                      .createUserWithEmailAndPassword(
+                          email: _email.text, password: _password.text)
                       .then((value) {
+                    print("User registered succesfully");
                     Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (c) => Home()));
+                        .push(MaterialPageRoute(builder: (c) => UserLogin()));
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
-                    Alert();
                   });
-                },
-                child: Text("Login")),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (c) => SignUp()));
                 },
                 child: Text("Sign Up"))
           ],

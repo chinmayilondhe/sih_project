@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:sih_project/screens/userlogin.dart';
 
 final List<String> imgList = [
   'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
@@ -22,147 +24,146 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Home"),
+      appBar: AppBar(
+        title: Text("Home"),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              child: CarouselSlider(
+                options: CarouselOptions(
+                  autoPlay: true,
+                  aspectRatio: 2.0,
+                  enlargeCenterPage: true,
+                ),
+                items: imageSliders,
+              ),
+            ),
+            Text(
+              "View all",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            Center(child: Text("General Awareness")),
+            Container(
+              margin: EdgeInsets.all(8),
+              padding: EdgeInsets.all(16),
+              height: 200,
+              child: Card(
+                color: Colors.lightBlue.shade100,
+                elevation: 5,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("General Awareness regarding issues "),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            Container(
+              child: CarouselSlider(
+                options: CarouselOptions(
+                  autoPlay: true,
+                  aspectRatio: 2.0,
+                  enlargeCenterPage: true,
+                ),
+                items: imageSliders,
+              ),
+            ),
+            Text(
+              "View all",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                child: CarouselSlider(
-                  options: CarouselOptions(
-                    autoPlay: true,
-                    aspectRatio: 2.0,
-                    enlargeCenterPage: true,
-                  ),
-                  items: imageSliders,
-                ),
-              ),
-              Text(
-                "View all",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              Center(child: Text("General Awareness")),
-              Container(
-                margin: EdgeInsets.all(8),
-                padding: EdgeInsets.all(16),
-                height: 200,
-                child: Card(
-                  color: Colors.lightBlue.shade100,
-                  elevation: 5,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                        "General Awareness regarding issues "),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              Container(
-                child: CarouselSlider(
-                  options: CarouselOptions(
-                    autoPlay: true,
-                    aspectRatio: 2.0,
-                    enlargeCenterPage: true,
-                  ),
-                  items: imageSliders,
-                ),
-              ),
-              Text(
-                "View all",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-        ),
+      ),
       drawer: Drawer(
-
           child: Container(
-            decoration: const BoxDecoration(
-              color: Colors.lightBlue,
+        decoration: const BoxDecoration(
+          color: Colors.lightBlue,
+        ),
+        child: ListView(
+          children: [
+            Container(
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(
+                    Icons.close,
+                    size: 40,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
-            child: ListView(
-              children: [
-                Container(
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(
-                        Icons.close,
-                        size: 40,
-                        color: Colors.white,
-                      ),
-                    ),
+            Container(
+              padding: const EdgeInsets.all(8),
+              alignment: Alignment.topLeft,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(Icons.person),
+                  SizedBox(
+                    height: 20,
                   ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  alignment: Alignment.topLeft,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Icon(Icons.person),
-                      SizedBox(height: 20,),
-                      // Image.asset(
-                      //   "images/profile.png",
-                      //   height: 100,
-                      //   width: 100,
-                      // ),
-                      Column(
-                        children: [
-                          Text("Name"),
-                          Text("AGE"),
-                          Text("ID")
-                        ],
-                      )
-                    ],
-                  ),
-                  // backgroundImage: AssetImage("images/profile.png",)
-                ),
-                ListTile(
-                  title: const Text(
-                    'Previous History',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                  ),
-                  onTap: () {
-
-                  },
-                ),
-                ListTile(
-                  title: const Text('Check Schemes',
-                      style: TextStyle(color: Colors.white, fontSize: 16)),
-                  onTap: () {},
-                ),
-                ListTile(
-                  title: const Text('Hospital',
-                      style: TextStyle(color: Colors.white, fontSize: 16)),
-                  onTap: () {},
-                ),
-                ListTile(
-                  title: const Text('Edit Profile',
-                      style: TextStyle(color: Colors.white, fontSize: 16)),
-                  onTap: () {
-
-                  },
-                ),
-                ListTile(
-                  title: const Text('Logout',
-                      style: TextStyle(color: Colors.white, fontSize: 16)),
-                  onTap: () {
-
-                  },
-                ),
-              ],
+                  // Image.asset(
+                  //   "images/profile.png",
+                  //   height: 100,
+                  //   width: 100,
+                  // ),
+                  Column(
+                    children: [Text("Name"), Text("AGE"), Text("ID")],
+                  )
+                ],
+              ),
+              // backgroundImage: AssetImage("images/profile.png",)
             ),
-          )),);
+            ListTile(
+              title: const Text(
+                'Previous History',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Check Schemes',
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Hospital',
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Edit Profile',
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Logout',
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
+              onTap: () {
+                FirebaseAuth.instance.signOut().then((value) {
+                  print("User log out succesfully");
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (c) => UserLogin()));
+                }).onError((error, stackTrace) {
+                  print("Unable to log out...Try again");
+                });
+              },
+            ),
+          ],
+        ),
+      )),
+    );
   }
 }
 
