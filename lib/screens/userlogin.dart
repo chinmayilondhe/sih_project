@@ -64,7 +64,9 @@ class _UserLoginState extends State<UserLogin> {
                         .push(MaterialPageRoute(builder: (c) => Home()));
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
-                    Alert();
+                    // Alert(); //error
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (c) => Alert()));
                   });
                 },
                 child: Text("Login")),
