@@ -13,46 +13,82 @@ class _UserLoginState extends State<UserLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Container(
-
-        decoration: BoxDecoration(
-          color: Colors.lightBlue.shade100
-        ),
+      body:SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderSide:
-                      const BorderSide( width: 2),
-                      borderRadius: BorderRadius.circular(30)),
-                  hintText: 'User ID',
+            Stack(
+              children: [
+                ClipRRect(child: Image.asset("images/SIH2-01.png",height:MediaQuery.of(context).size.height,
+              )),
+                Positioned(
+                  top:150,left: 50,
+                  child: Column(
+                    children: [
+                      Text("WELCOME",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),),
+                      SizedBox(height: 230,),
+                      Container(
+                        width: 300,
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextField(
+
+                          decoration: InputDecoration(
+
+                            enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                const BorderSide( width: 2,color: Colors.cyanAccent),
+                                borderRadius: BorderRadius.circular(30)),
+                            hintText: 'User ID',
+                          ),
+                        ),
+                      ),
+
+
+                Container(
+                  width: 300,
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide:
+                          const BorderSide( width: 2,color: Colors.cyanAccent),
+                          borderRadius: BorderRadius.circular(30)),
+                      hintText: 'Password',
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Container(
-              width: 300,
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderSide:
-                      const BorderSide( width: 2),
-                      borderRadius: BorderRadius.circular(30)),
-                  hintText: 'Password',
+                SizedBox(height: 30,),
+                SizedBox(
+                  width: 150,
+                  height: 50,
+                  child: ClipRRect(
+                    borderRadius:
+                    const BorderRadius.all(Radius.circular(26)),
+                    child: ElevatedButton(
+                        style: ButtonStyle(
+                          elevation: MaterialStateProperty.all(7),
+                          backgroundColor: MaterialStateProperty.all(
+                              Colors.cyanAccent.shade700
+                                  .withOpacity(0.6)),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (c) => Home()));
+                        },
+                        child: const Text("Login",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold))),
+                  ),
                 ),
-              ),
+                    ],
+                  ),
+                ),
+            ],
             ),
-            SizedBox(height: 20,),
-            ElevatedButton(onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (c)=>Home()));
-            }, child: Text("Login"))
-        ],),
+          ],
+        ),
       ),
     );
   }
